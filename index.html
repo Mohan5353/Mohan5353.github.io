@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohan Kumar Manepalli</title>
+<meta name="description" content="AI engineer in medical imaging — fundus, OCT, MRI. Technical Staff at TANUH AICoE, IISc.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@500&display=swap">
+<style>
+:root{
+  --paper:#FBFAF7; --ink:#1A2422; --mist:#5C6965; --fundus:#C24914;
+  --teal:#16655A; --line:#E3E1DA; --card:#F4F2EC; --disc-glow:#E8935C;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141A18; --ink:#EAE8E1; --mist:#9AA6A1; --fundus:#E0703A;
+    --teal:#54B3A4; --line:#2A332F; --card:#1B2320; --disc-glow:#A44E1F;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141A18; --ink:#EAE8E1; --mist:#9AA6A1; --fundus:#E0703A;
+  --teal:#54B3A4; --line:#2A332F; --card:#1B2320; --disc-glow:#A44E1F;
+}
+*{box-sizing:border-box; margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important; animation:none !important} }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size:1.0rem; line-height:1.55;
+}
+a{color:var(--teal)}
+a:focus-visible, button:focus-visible{outline:2px solid var(--fundus); outline-offset:2px}
+.wrap{max-width:72rem; margin:0 auto; padding:2.5rem 1.25rem; display:grid; grid-template-columns:19rem 1fr; gap:3rem}
+@media (max-width:56rem){ .wrap{grid-template-columns:1fr; gap:1.5rem} }
+
+/* ---------- identity rail ---------- */
+.rail{position:sticky; top:2rem; align-self:start; display:flex; flex-direction:column; gap:1.4rem}
+@media (max-width:56rem){ .rail{position:static} }
+h1{font-family:"Source Serif 4", Georgia, serif; font-weight:700; font-size:2.1rem; line-height:1.12; text-wrap:balance}
+.role{color:var(--fundus); font-weight:600; margin-top:.4rem}
+.contact{display:flex; flex-direction:column; gap:.35rem; font-size:.95rem; border-top:1px solid var(--line); padding-top:1rem}
+.contact a{text-decoration:none}
+.contact a:hover{text-decoration:underline}
+.contact .label{font-family:"Source Code Pro", monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--mist)}
+.downloads{display:flex; flex-direction:column; gap:.6rem; border-top:1px solid var(--line); padding-top:1rem}
+.btn{
+  display:block; text-align:center; padding:.65rem .9rem; border-radius:.35rem;
+  font-weight:600; text-decoration:none; border:1.5px solid var(--fundus);
+}
+.btn.primary{background:var(--fundus); color:var(--paper)}
+.btn.ghost{color:var(--fundus)}
+.btn:hover{filter:brightness(1.08)}
+.btn small{display:block; font-weight:400; font-size:.78rem; opacity:.85}
+
+/* ---------- hero ---------- */
+.hero{border-bottom:1px solid var(--line); padding-bottom:2rem; margin-bottom:2rem}
+.discs{display:flex; gap:.9rem; margin-bottom:1.3rem}
+.discs svg{width:64px; height:64px; flex:none}
+@media (max-width:34rem){ .discs svg{width:48px; height:48px} }
+.hero h2{
+  font-family:"Source Serif 4", Georgia, serif; font-weight:600; font-size:1.75rem;
+  line-height:1.25; text-wrap:balance; max-width:32ch;
+}
+.hero p{color:var(--mist); max-width:62ch; margin-top:.8rem}
+.hero .em{color:var(--ink); font-weight:600}
+
+/* ---------- sections ---------- */
+section{margin-bottom:2.6rem}
+h3.sec{
+  font-family:"Source Code Pro", monospace; font-size:.78rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--teal);
+  border-bottom:1px solid var(--line); padding-bottom:.45rem; margin-bottom:1.2rem;
+}
+.entry{display:grid; grid-template-columns:8.5rem 1fr; gap:1.2rem; padding-bottom:1.4rem}
+@media (max-width:34rem){ .entry{grid-template-columns:1fr; gap:.2rem} }
+.when{font-family:"Source Code Pro", monospace; font-size:.78rem; color:var(--mist); padding-top:.25rem; white-space:nowrap}
+.entry h4{font-size:1.06rem; font-weight:700}
+.entry .org{color:var(--mist); font-size:.92rem; margin-bottom:.35rem}
+.entry .org a{color:inherit}
+.entry ul{padding-left:1.1rem; display:flex; flex-direction:column; gap:.3rem; font-size:.95rem}
+.entry li::marker{color:var(--fundus)}
+.now{color:var(--fundus); font-weight:600}
+
+/* skills */
+.skilltable{display:flex; flex-direction:column; gap:.65rem; font-size:.93rem}
+.skillrow{display:grid; grid-template-columns:12.5rem 1fr; gap:1rem}
+@media (max-width:34rem){ .skillrow{grid-template-columns:1fr; gap:.1rem} }
+.skillrow b{color:var(--teal); font-weight:600}
+.skillrow span{color:var(--ink)}
+
+/* publications + certs */
+.pub{background:var(--card); border-left:3px solid var(--fundus); border-radius:.25rem; padding:.9rem 1.1rem; margin-bottom:.8rem}
+.pub h4{font-family:"Source Serif 4", Georgia, serif; font-weight:600; font-size:1.02rem; line-height:1.35}
+.pub .venue{font-size:.88rem; color:var(--mist); margin-top:.25rem}
+.pub .venue b{color:var(--fundus)}
+.certs{list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:.5rem .9rem; font-size:.92rem}
+@media (max-width:44rem){ .certs{grid-template-columns:1fr} }
+.certs li{display:flex; gap:.5rem; align-items:baseline}
+.certs .yr{font-family:"Source Code Pro", monospace; font-size:.75rem; color:var(--mist); flex:none}
+footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside class="rail">
+  <div>
+    <h1>Mohan Kumar Manepalli</h1>
+    <p class="role">AI Engineer · Medical Imaging</p>
+  </div>
+  <div class="contact">
+    <span><span class="label">Location</span><br>Bangalore / Rajahmundry, India</span>
+    <span><span class="label">Email</span><br><a href="mailto:mohankumarmanepalli.53@gmail.com">mohankumarmanepalli.53@gmail.com</a></span>
+    <span><span class="label">Phone</span><br><a href="tel:+916301431848">+91 63014 31848</a></span>
+    <span><span class="label">Profiles</span><br>
+      <a href="https://www.linkedin.com/in/manepalli-mohan-kumar-910558253">LinkedIn</a> ·
+      <a href="https://github.com/Mohan5353">GitHub</a></span>
+  </div>
+  <div class="downloads">
+    <a class="btn primary" href="MohanKumar_Resume.pdf" download>Download resume (PDF)<small>Full version</small></a>
+    <a class="btn ghost" href="MohanKumar_Resume_2page.pdf" download>Download 2-page resume<small>Condensed version</small></a>
+  </div>
+</aside>
+
+<main>
+  <div class="hero">
+    <div class="discs" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><defs>
+        <radialGradient id="f1" cx="42%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="var(--disc-glow)"/><stop offset="55%" stop-color="var(--fundus)"/><stop offset="100%" stop-color="#7A2E0E"/>
+        </radialGradient></defs>
+        <g id="fundus">
+          <circle cx="32" cy="32" r="30" fill="url(#f1)"/>
+          <circle cx="43" cy="27" r="6" fill="var(--disc-glow)" opacity=".9"/>
+          <path d="M43 27 Q30 22 16 28 M43 27 Q32 36 18 42 M43 27 Q38 42 30 52" stroke="#7A2E0E" stroke-width="1.6" fill="none" opacity=".75"/>
+        </g>
+      </svg>
+      <svg viewBox="0 0 64 64"><use href="#fundus" transform="rotate(90 32 32)"/></svg>
+      <svg viewBox="0 0 64 64"><use href="#fundus" transform="rotate(180 32 32)"/></svg>
+      <svg viewBox="0 0 64 64"><use href="#fundus" transform="rotate(270 32 32)"/></svg>
+    </div>
+    <h2>Screening for systemic disease from four fundus photographs per patient.</h2>
+    <p>I build deep learning systems for medical imaging — fundus, OCT, MRI, and mammography. Currently <span class="em">Technical Staff at TANUH, the AI Centre of Excellence at IISc</span>, working on the vascular disease screening vertical: foundation models, LoRA fine-tuning, agent-based data quality pipelines, and the infrastructure that keeps them running.</p>
+  </div>
+
+  <section>
+    <h3 class="sec">Experience</h3>
+
+    <div class="entry">
+      <div class="when">Jun 2026 — <span class="now">now</span></div>
+      <div>
+        <h4>Technical Staff</h4>
+        <p class="org"><a href="https://www.tanuh.ai/">TANUH (AICoE), IISc</a> · Vascular Disease Screening · Bangalore</p>
+        <ul>
+          <li>Detecting systemic diseases from only four fundus images per patient, using RETFound, MedGemma 1.5, and Qwen with LoRA fine-tuning.</li>
+          <li>Built an agent-based automated data quality check pipeline for incoming clinical imaging data.</li>
+          <li>Created and operate a data collection and anonymisation website on GCP, collecting real-time data from hospitals across India.</li>
+          <li>Administer the team's compute nodes and Open OnDemand platform.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Nov 2025 — May 2026</div>
+      <div>
+        <h4>Engineering Intern</h4>
+        <p class="org"><a href="https://www.tanuh.ai/">TANUH (AICoE), IISc</a> · Early Disease Detection · Bangalore</p>
+        <ul>
+          <li>Developed AI-driven diagnostics for early breast cancer detection and risk prediction.</li>
+          <li>Built "Pseudohealth" generative systems to synthesize mammograms and fine-tuned MedGemma 1.5 4B for mammography.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Aug — Nov 2025</div>
+      <div>
+        <h4>Developer, Video Masking &amp; Annotation Application</h4>
+        <p class="org">Full-stack AI deployment · Bangalore</p>
+        <ul>
+          <li>Designed a medical video annotation tool integrating SAM for frame-by-frame analysis, deployed serverless on Google Cloud Run.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Mar — Oct 2025</div>
+      <div>
+        <h4>Research Intern</h4>
+        <p class="org"><a href="https://cds.iisc.ac.in/faculty/yalavarthy/MIG/index.html">MIGLab, CDS Department, IISc</a> · Medical imaging &amp; deep learning · Bangalore</p>
+        <ul>
+          <li>Distributed training with torchrun on DGX clusters; quantized models for real-time inference.</li>
+          <li>Flash Attention and MRS pipelines for 3D UNet training on the FeTS dataset.</li>
+          <li>OCT image denoising and model-based QSM reconstruction with structure preservation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2025</div>
+      <div>
+        <h4>Teaching Assistant</h4>
+        <p class="org">Aster Academy Cohort-5 · AI in Healthcare · Bangalore</p>
+        <ul><li>Supported instruction and technical experiments for a course on medical image analysis.</li></ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Jun — Aug 2023</div>
+      <div>
+        <h4>Machine Learning Intern</h4>
+        <p class="org">Academor (Flutura) · Remote</p>
+        <ul><li>Applied ML for industrial use cases: model internals, data curation, version-controlled experimentation.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="sec">Publications</h3>
+    <div class="pub">
+      <h4>Energy-Regularized Self-Supervised Denoising for Structure-Preserving OCT Imaging</h4>
+      <p class="venue">Optics Letters · <b>Published</b> · 2026</p>
+    </div>
+    <div class="pub">
+      <h4>Data Driven Approach in Building Consumer-Friendly Business Models Using Machine Learning Techniques</h4>
+      <p class="venue">IEEE AICECS, Manipal Institute of Technology · Dec 2024</p>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="sec">Skills</h3>
+    <div class="skilltable">
+      <div class="skillrow"><b>Programming &amp; frameworks</b><span>Python (PyTorch, PyTorch Lightning, TensorFlow, Scikit-learn, MONAI), MATLAB, OpenCV, C/C++, HF Transformers, ComfyUI</span></div>
+      <div class="skillrow"><b>LLMs &amp; generative AI</b><span>VLMs, LLMs, diffusion models (DDPM), VAEs, GANs, fine-tuning (LoRA/QLoRA)</span></div>
+      <div class="skillrow"><b>DL architectures</b><span>Transformers (ViTs), Flash Attention, UNet, multi-task &amp; multi-modal learning</span></div>
+      <div class="skillrow"><b>Imaging systems</b><span>Medical imaging (MRI, CT, endoscopy, fundus, OCT), DICOM/NIfTI, model optimization, edge architectures</span></div>
+      <div class="skillrow"><b>CV &amp; processing</b><span>Restoration, enhancement, denoising, segmentation, object detection, OCR</span></div>
+      <div class="skillrow"><b>Distributed training</b><span>DeepSpeed, torchrun, DDP, GPU acceleration, bfloat16, DGX clusters</span></div>
+      <div class="skillrow"><b>Inference optimization</b><span>Quantization (GGUF), knowledge distillation, vLLM, TensorRT</span></div>
+      <div class="skillrow"><b>Experiment tracking</b><span>MLflow, TensorBoard, Python logging, Git</span></div>
+      <div class="skillrow"><b>Languages</b><span>English, Telugu (native), Hindi</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="sec">Projects</h3>
+    <div class="entry"><div class="when">2025</div><div><h4>Real-time median-nerve segmentation</h4><ul><li>Deployed VisTr on Jetson Orin NX; Flash-Attn 2 optimization and PyTorch DDP training on dual RTX A6000s.</li></ul></div></div>
+    <div class="entry"><div class="when">2024</div><div><h4>Stable Diffusion 3.5 + ComfyUI</h4><ul><li>Text-to-image inference pipelines with the ComfyUI node interface on Kaggle infrastructure.</li></ul></div></div>
+    <div class="entry"><div class="when">2024</div><div><h4>AgriBot (with ICAR, Pune)</h4><ul><li>Multimodal leaf disease detection and crop recommendation on Arduino, ESP, and Raspberry Pi.</li></ul></div></div>
+    <div class="entry"><div class="when">2023</div><div><h4>Gemini-powered Telegram bot</h4><ul><li>Multimodal agentic chatbot on the Gemini API for domain-specific query answering.</li></ul></div></div>
+    <div class="entry"><div class="when">2023</div><div><h4>Cloud-based object finder</h4><ul><li>Real-time multimodal object identification with YOLO over cloud-streamed data.</li></ul></div></div>
+    <div class="entry"><div class="when">2023</div><div><h4>LI-FI prototype</h4><ul><li>Hardware prototype for high-speed wireless data transmission via light.</li></ul></div></div>
+  </section>
+
+  <section>
+    <h3 class="sec">Education</h3>
+    <div class="entry"><div class="when">2022 — 2026</div><div><h4>B.Tech</h4><p class="org">Rajiv Gandhi University of Knowledge Technologies · CGPA 8.5</p></div></div>
+    <div class="entry"><div class="when">2020 — 2022</div><div><h4>Pre-University (MPC)</h4><p class="org">RGUKT · CGPA 9.56</p></div></div>
+    <div class="entry"><div class="when">2020</div><div><h4>Secondary School Certificate</h4><p class="org">BSE AP · State 64th rank, 2020 Polytechnic Entrance Examination</p></div></div>
+  </section>
+
+  <section>
+    <h3 class="sec">Certifications</h3>
+    <ul class="certs">
+      <li><span class="yr">2025</span><a href="https://drive.google.com/open?id=1_qKfRzpRK96kGdKs395c2-_b1ook2_Gy">Machine Learning for Engineering — NPTEL / IIT Madras</a></li>
+      <li><span class="yr">2025</span><a href="https://drive.google.com/open?id=1QItkdxz3UYkbFsol3t6FrN3TbNPrmPhC">VLSI Design Flow: RTL to GDS — NPTEL / IIIT Delhi</a></li>
+      <li><span class="yr">2025</span><a href="https://drive.google.com/open?id=1SoWY47h3EqAno-_cGuBnblghbZFe6CXu">Electronic Systems Design (PCB) — NPTEL / IIT Madras</a></li>
+      <li><span class="yr">2025</span><a href="https://drive.google.com/open?id=1RXkibU1uDHdXd7UT6GlTZ8GBryoXsnHM">Python (Basic) — HackerRank</a></li>
+      <li><span class="yr">2024</span><a href="https://drive.google.com/open?id=1QgrhXlzRsiXAsvmYV3GEsgZgeqVBmYYP">Essential Mathematics for ML — NPTEL / IIT Roorkee</a></li>
+      <li><span class="yr">2024</span><a href="https://drive.google.com/open?id=1xTS8AyHN0tqpTCdLCev4jJxdzg3i_pq5">Deep Learning Specialist — edX / IBM</a></li>
+      <li><span class="yr">2024</span><a href="https://drive.google.com/open?id=1b7p9SFXDUsjDeUwn-SJO91XvNzEbyTDL">Circuits &amp; Electronics 3 — edX / MITx</a></li>
+      <li><span class="yr">2023</span><a href="https://drive.google.com/open?id=1623UVx9Rxjz-GmzluGgDsy1yhaifrdPg">Geoprocessing using Python — IIRS / ISRO</a></li>
+      <li><span class="yr">2023</span><a href="https://drive.google.com/open?id=1NnyYfJ1f5o4NKB_OBTBIJ_93mjZehi1D">Intro to Machine Learning — Kaggle</a></li>
+      <li><span class="yr">2023</span><a href="https://drive.google.com/open?id=1-fFEsQ8TUjGV2FYqeSt1NadL8tBbDhfJ">AI Appreciate &amp; AI Aware — Intel</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    Also: IEEE YESIST'12 participant (2024) · National Service Scheme, 2021–2024 · Regular reader of Q1/Q2 medical-imaging and AI literature.
+  </footer>
+</main>
+</div>
+</body>
+</html>

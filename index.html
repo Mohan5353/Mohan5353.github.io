@@ -88,24 +88,47 @@ h1{font-family:"Source Serif 4", Georgia, serif; font-weight:700; font-size:2.1r
 .btn small{display:block; font-weight:400; font-size:.78rem; opacity:.85}
 
 /* ---------- hero ---------- */
-.hero{border-bottom:1px solid var(--line); padding-bottom:2rem; margin-bottom:2.4rem}
-.discs{display:flex; gap:.9rem; margin-bottom:1.3rem}
-.discs svg{width:64px; height:64px; flex:none; opacity:0; transform:scale(.6); animation:disc .5s ease forwards; transition:transform .25s ease, filter .25s ease; cursor:default}
-.discs svg:nth-child(1){animation-delay:.05s}
-.discs svg:nth-child(2){animation-delay:.17s}
-.discs svg:nth-child(3){animation-delay:.29s}
-.discs svg:nth-child(4){animation-delay:.41s}
-.discs svg:hover{transform:scale(1.12) rotate(6deg); filter:brightness(1.12)}
-@keyframes disc{to{opacity:1; transform:scale(1)}}
-@media (max-width:34rem){ .discs svg{width:48px; height:48px} }
+.hero{border-bottom:1px solid var(--line); padding-bottom:2rem; margin-bottom:2rem;
+  display:grid; grid-template-columns:1fr 21rem; gap:2.5rem; align-items:center}
+@media (max-width:44rem){ .hero{grid-template-columns:1fr; gap:1.8rem} }
 .hero h2{
   font-family:"Source Serif 4", Georgia, serif; font-weight:600; font-size:1.8rem;
   line-height:1.25; text-wrap:balance; max-width:32ch;
-  opacity:0; animation:rise .6s ease .5s forwards;
+  opacity:0; animation:rise .6s ease .15s forwards;
 }
-.hero p{color:var(--mist); max-width:62ch; margin-top:.8rem; opacity:0; animation:rise .6s ease .7s forwards}
+.hero p{color:var(--mist); max-width:62ch; margin-top:.8rem; opacity:0; animation:rise .6s ease .3s forwards}
 .hero .em{color:var(--ink); font-weight:600}
 @keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+
+.modalities{display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.1rem; opacity:0; animation:rise .6s ease .45s forwards}
+.modalities span{
+  font-family:"Source Code Pro", monospace; font-size:.72rem; letter-spacing:.05em;
+  color:var(--teal); border:1px solid var(--line); border-radius:2rem; padding:.2rem .7rem;
+}
+
+/* the four-scan grid */
+.scanwrap{opacity:0; animation:rise .7s ease .35s forwards}
+.scangrid{display:grid; grid-template-columns:1fr 1fr; gap:.7rem}
+.scan{position:relative; border-radius:.5rem; overflow:hidden; background:#2A0F04;
+  box-shadow:0 6px 22px rgba(40,12,0,.28); transition:transform .25s ease, box-shadow .25s ease}
+.scan:hover{transform:scale(1.045); box-shadow:0 10px 28px rgba(40,12,0,.4); z-index:1}
+.scan canvas{display:block; width:100%; height:auto}
+.scan .tag{
+  position:absolute; left:.5rem; bottom:.4rem; font-family:"Source Code Pro", monospace;
+  font-size:.62rem; letter-spacing:.08em; color:#F5C9A4; opacity:.9; text-transform:uppercase;
+}
+.scancap{font-family:"Source Code Pro", monospace; font-size:.7rem; color:var(--mist);
+  text-align:center; margin-top:.7rem; letter-spacing:.04em}
+
+/* stats band */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-bottom:2.6rem}
+@media (max-width:44rem){ .stats{grid-template-columns:1fr 1fr} }
+.stat{background:var(--card); border-radius:.45rem; padding:.9rem 1rem; border-top:3px solid var(--teal)}
+.stat:first-child{border-top-color:var(--fundus)}
+.stat .num{font-family:"Source Serif 4", Georgia, serif; font-size:1.9rem; font-weight:700;
+  color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.1}
+.stat .num sup{font-size:1.1rem; color:var(--fundus)}
+.stat .lbl{font-size:.8rem; color:var(--mist); margin-top:.15rem}
 
 /* ---------- sections ---------- */
 section{margin-bottom:2.8rem; scroll-margin-top:1.5rem}
@@ -163,6 +186,27 @@ h3.sec{
 .certs .yr{font-family:"Source Code Pro", monospace; font-size:.75rem; color:var(--mist); flex:none}
 footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); font-size:.85rem}
 
+/* project cards */
+.projgrid{display:grid; grid-template-columns:1fr 1fr; gap:.9rem}
+@media (max-width:44rem){ .projgrid{grid-template-columns:1fr} }
+.pcard{
+  background:var(--card); border:1px solid var(--line); border-radius:.5rem;
+  padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.5rem;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.pcard:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.1); border-color:var(--teal)}
+.pcard .top{display:flex; align-items:center; gap:.7rem}
+.pcard .icon{
+  width:2.6rem; height:2.6rem; flex:none; border-radius:.45rem; display:grid; place-items:center;
+  background:var(--paper); border:1px solid var(--line); color:var(--teal);
+  transition:color .2s ease, border-color .2s ease;
+}
+.pcard:hover .icon{color:var(--fundus); border-color:var(--fundus)}
+.pcard .icon svg{width:1.5rem; height:1.5rem}
+.pcard h4{font-size:1.0rem; font-weight:700; line-height:1.3}
+.pcard .yr{font-family:"Source Code Pro", monospace; font-size:.72rem; color:var(--mist)}
+.pcard p{font-size:.92rem; color:var(--mist)}
+
 /* back to top */
 #topBtn{
   position:fixed; bottom:1.2rem; right:1.2rem; z-index:60;
@@ -178,7 +222,7 @@ footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *{transition:none !important; animation:none !important}
-  .discs svg, .hero h2, .hero p{opacity:1; transform:none}
+  .hero h2, .hero p, .modalities, .scanwrap{opacity:1; transform:none}
   .reveal{opacity:1; transform:none}
 }
 </style>
@@ -220,23 +264,29 @@ footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); 
 
 <main>
   <div class="hero">
-    <div class="discs" aria-hidden="true">
-      <svg viewBox="0 0 64 64"><defs>
-        <radialGradient id="f1" cx="42%" cy="40%" r="70%">
-          <stop offset="0%" stop-color="var(--disc-glow)"/><stop offset="55%" stop-color="var(--fundus)"/><stop offset="100%" stop-color="#7A2E0E"/>
-        </radialGradient></defs>
-        <g id="fundus">
-          <circle cx="32" cy="32" r="30" fill="url(#f1)"/>
-          <circle cx="43" cy="27" r="6" fill="var(--disc-glow)" opacity=".9"/>
-          <path d="M43 27 Q30 22 16 28 M43 27 Q32 36 18 42 M43 27 Q38 42 30 52" stroke="#7A2E0E" stroke-width="1.6" fill="none" opacity=".75"/>
-        </g>
-      </svg>
-      <svg viewBox="0 0 64 64"><use href="#fundus" transform="rotate(90 32 32)"/></svg>
-      <svg viewBox="0 0 64 64"><use href="#fundus" transform="rotate(180 32 32)"/></svg>
-      <svg viewBox="0 0 64 64"><use href="#fundus" transform="rotate(270 32 32)"/></svg>
+    <div>
+      <h2>Screening for systemic disease from four fundus photographs per patient.</h2>
+      <p>I build deep learning systems for medical imaging — fundus, OCT, MRI, and mammography. Currently <span class="em">Technical Staff at TANUH, the AI Centre of Excellence at IISc</span>, working on the vascular disease screening vertical: foundation models, LoRA fine-tuning, agent-based data quality pipelines, and the infrastructure that keeps them running.</p>
+      <div class="modalities" aria-label="Imaging modalities">
+        <span>Fundus</span><span>OCT</span><span>MRI</span><span>CT</span><span>Mammography</span><span>Ultrasound</span><span>Endoscopy</span>
+      </div>
     </div>
-    <h2>Screening for systemic disease from four fundus photographs per patient.</h2>
-    <p>I build deep learning systems for medical imaging — fundus, OCT, MRI, and mammography. Currently <span class="em">Technical Staff at TANUH, the AI Centre of Excellence at IISc</span>, working on the vascular disease screening vertical: foundation models, LoRA fine-tuning, agent-based data quality pipelines, and the infrastructure that keeps them running.</p>
+    <div class="scanwrap" aria-hidden="true">
+      <div class="scangrid">
+        <div class="scan"><canvas width="360" height="360" data-seed="11" data-eye="od"></canvas><span class="tag">OD · disc</span></div>
+        <div class="scan"><canvas width="360" height="360" data-seed="23" data-eye="od"></canvas><span class="tag">OD · macula</span></div>
+        <div class="scan"><canvas width="360" height="360" data-seed="37" data-eye="os"></canvas><span class="tag">OS · disc</span></div>
+        <div class="scan"><canvas width="360" height="360" data-seed="52" data-eye="os"></canvas><span class="tag">OS · macula</span></div>
+      </div>
+      <p class="scancap">four views per patient — both eyes, disc &amp; macula centred</p>
+    </div>
+  </div>
+
+  <div class="stats" aria-label="At a glance">
+    <div class="stat"><div class="num"><span data-n="2"></span><sup>+</sup></div><div class="lbl">years in deep learning</div></div>
+    <div class="stat"><div class="num"><span data-n="2"></span></div><div class="lbl">publications</div></div>
+    <div class="stat"><div class="num"><span data-n="7"></span></div><div class="lbl">imaging modalities</div></div>
+    <div class="stat"><div class="num"><span data-n="10"></span><sup>+</sup></div><div class="lbl">certifications</div></div>
   </div>
 
   <section id="experience">
@@ -340,12 +390,50 @@ footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); 
 
   <section id="projects">
     <h3 class="sec">Projects</h3>
-    <div class="entry"><div class="when">2025</div><div class="body"><h4>Real-time median-nerve segmentation</h4><ul><li>Deployed VisTr on Jetson Orin NX; Flash-Attn 2 optimization and PyTorch DDP training on dual RTX A6000s.</li></ul></div></div>
-    <div class="entry"><div class="when">2024</div><div class="body"><h4>Stable Diffusion 3.5 + ComfyUI</h4><ul><li>Text-to-image inference pipelines with the ComfyUI node interface on Kaggle infrastructure.</li></ul></div></div>
-    <div class="entry"><div class="when">2024</div><div class="body"><h4>AgriBot (with ICAR, Pune)</h4><ul><li>Multimodal leaf disease detection and crop recommendation on Arduino, ESP, and Raspberry Pi.</li></ul></div></div>
-    <div class="entry"><div class="when">2023</div><div class="body"><h4>Gemini-powered Telegram bot</h4><ul><li>Multimodal agentic chatbot on the Gemini API for domain-specific query answering.</li></ul></div></div>
-    <div class="entry"><div class="when">2023</div><div class="body"><h4>Cloud-based object finder</h4><ul><li>Real-time multimodal object identification with YOLO over cloud-streamed data.</li></ul></div></div>
-    <div class="entry"><div class="when">2023</div><div class="body"><h4>LI-FI prototype</h4><ul><li>Hardware prototype for high-speed wireless data transmission via light.</li></ul></div></div>
+    <div class="projgrid">
+      <div class="pcard">
+        <div class="top">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 21M12 3l8 18M12 3v18"/><path d="M7.5 13.5c3-2 6-2 9 0" stroke-dasharray="2 2"/></svg></span>
+          <div><h4>Real-time median-nerve segmentation</h4><span class="yr">2025 · Jetson Orin NX</span></div>
+        </div>
+        <p>VisTr deployed at the edge with Flash-Attn 2; training scaled with PyTorch DDP on dual RTX A6000s.</p>
+      </div>
+      <div class="pcard">
+        <div class="top">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M6.8 7.4 10.5 16M17.2 7.4 13.5 16M7.2 6h9.6"/></svg></span>
+          <div><h4>Stable Diffusion 3.5 + ComfyUI</h4><span class="yr">2024 · generative pipelines</span></div>
+        </div>
+        <p>Text-to-image inference through ComfyUI's node graph on Kaggle infrastructure.</p>
+      </div>
+      <div class="pcard">
+        <div class="top">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c6-3 8-8 8-14-6 0-11 2-11 9 0 2 1 4 3 5Z"/><path d="M12 21c-4-1-7-4-7-8"/></svg></span>
+          <div><h4>AgriBot — with ICAR, Pune</h4><span class="yr">2024 · embedded vision</span></div>
+        </div>
+        <p>Leaf disease detection and crop recommendation on Arduino, ESP, and Raspberry Pi.</p>
+      </div>
+      <div class="pcard">
+        <div class="top">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5Z"/><path d="M9 11h6M9 8h4"/></svg></span>
+          <div><h4>Gemini-powered Telegram bot</h4><span class="yr">2023 · multimodal agent</span></div>
+        </div>
+        <p>Agentic chatbot on the Gemini API tuned for domain-specific question answering.</p>
+      </div>
+      <div class="pcard">
+        <div class="top">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+          <div><h4>Cloud-based object finder</h4><span class="yr">2023 · YOLO detection</span></div>
+        </div>
+        <p>Real-time multimodal object identification over cloud-streamed video.</p>
+      </div>
+      <div class="pcard">
+        <div class="top">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2h-6c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3Z"/><path d="M19 5l2-1M19 9h2.5M3 5 1 4M2.5 9H5" stroke-dasharray="1.5 2"/></svg></span>
+          <div><h4>LI-FI prototype</h4><span class="yr">2023 · hardware</span></div>
+        </div>
+        <p>High-speed wireless data transmission over light, integrating custom hardware.</p>
+      </div>
+    </div>
   </section>
 
   <section id="education">
@@ -436,10 +524,11 @@ footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); 
   window.addEventListener('resize', spy, {passive:true});
   spy();
 
-  /* reveal sections as they enter the viewport (progressive enhancement) */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveal sections as they enter the viewport (progressive enhancement) */
   if (!reduced && 'IntersectionObserver' in window) {
-    var items = document.querySelectorAll('section .entry, section .pub, section .skillrow, .certs li');
+    var items = document.querySelectorAll('section .entry, section .pub, section .skillrow, .certs li, .pcard, .stat');
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
@@ -447,6 +536,102 @@ footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); 
     }, {threshold: 0.08});
     items.forEach(function(el){ el.classList.add('reveal'); io.observe(el); });
   }
+
+  /* stat count-up */
+  var nums = Array.prototype.slice.call(document.querySelectorAll('.stat .num span[data-n]'));
+  function showNum(el, v){ el.textContent = v; }
+  if (reduced || !('IntersectionObserver' in window)) {
+    nums.forEach(function(el){ showNum(el, el.getAttribute('data-n')); });
+  } else {
+    var nio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        nio.unobserve(en.target);
+        var target = parseInt(en.target.getAttribute('data-n'), 10);
+        var t0 = null;
+        function step(t){
+          if (!t0) t0 = t;
+          var k = Math.min((t - t0) / 900, 1);
+          showNum(en.target, Math.round(target * (1 - Math.pow(1 - k, 3))));
+          if (k < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, {threshold: 0.4});
+    nums.forEach(function(el){ showNum(el, 0); nio.observe(el); });
+  }
+
+  /* procedurally drawn fundus scans — four views per patient */
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function drawFundus(canvas){
+    var rnd = mulberry32(parseInt(canvas.getAttribute('data-seed'), 10));
+    var mirror = canvas.getAttribute('data-eye') === 'os';
+    var s = canvas.width, c = s / 2;
+    var ctx = canvas.getContext('2d');
+    ctx.save();
+    ctx.beginPath(); ctx.arc(c, c, c - 3, 0, 7); ctx.clip();
+
+    // retinal ground: warm radial gradient, brighter toward the disc side
+    var gx = c * (mirror ? 0.72 : 1.28);
+    var g = ctx.createRadialGradient(gx, c * 0.92, s * 0.06, c, c, c * 1.05);
+    g.addColorStop(0, '#DD7A3C'); g.addColorStop(0.35, '#C6501A');
+    g.addColorStop(0.75, '#8E3210'); g.addColorStop(1, '#571C07');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, s, s);
+
+    // mottled texture
+    for (var i = 0; i < 60; i++) {
+      ctx.beginPath();
+      ctx.arc(rnd() * s, rnd() * s, s * (0.015 + rnd() * 0.05), 0, 7);
+      ctx.fillStyle = rnd() > 0.5 ? 'rgba(120,40,10,0.05)' : 'rgba(240,160,90,0.05)';
+      ctx.fill();
+    }
+
+    // macula: soft dark spot opposite the disc
+    var mx = s * (mirror ? 0.62 : 0.38), my = s * 0.5;
+    var mg = ctx.createRadialGradient(mx, my, 0, mx, my, s * 0.14);
+    mg.addColorStop(0, 'rgba(80,22,4,0.5)'); mg.addColorStop(1, 'rgba(80,22,4,0)');
+    ctx.fillStyle = mg; ctx.beginPath(); ctx.arc(mx, my, s * 0.14, 0, 7); ctx.fill();
+
+    // optic disc
+    var dx = s * (mirror ? 0.26 : 0.74), dy = s * 0.46;
+    var dg = ctx.createRadialGradient(dx, dy, 0, dx, dy, s * 0.085);
+    dg.addColorStop(0, '#F6CB8A'); dg.addColorStop(0.65, '#EBA057'); dg.addColorStop(1, '#D07B35');
+    ctx.fillStyle = dg; ctx.beginPath(); ctx.arc(dx, dy, s * 0.082, 0, 7); ctx.fill();
+
+    // vessels: recursive branches out of the disc
+    function branch(x, y, ang, w, depth){
+      if (depth <= 0 || w < 0.5) return;
+      var len = s * (0.10 + rnd() * 0.13);
+      var bend = (rnd() - 0.5) * 1.1;
+      var mx2 = x + Math.cos(ang + bend * 0.5) * len * 0.55;
+      var my2 = y + Math.sin(ang + bend * 0.5) * len * 0.55;
+      var ex = x + Math.cos(ang + bend) * len;
+      var ey = y + Math.sin(ang + bend) * len;
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(mx2, my2, ex, ey);
+      ctx.strokeStyle = 'rgba(96,26,6,0.85)'; ctx.lineWidth = w; ctx.lineCap = 'round'; ctx.stroke();
+      branch(ex, ey, ang + bend + (rnd() - 0.5) * 0.7, w * 0.72, depth - 1);
+      if (rnd() > 0.45) branch(ex, ey, ang + bend - (0.4 + rnd() * 0.6), w * 0.6, depth - 1);
+    }
+    var trunks = 5 + Math.floor(rnd() * 2);
+    for (var tI = 0; tI < trunks; tI++) {
+      var a = (tI / trunks) * Math.PI * 2 + rnd() * 0.5;
+      branch(dx + Math.cos(a) * s * 0.05, dy + Math.sin(a) * s * 0.05, a, s * 0.011, 5);
+    }
+
+    // vignette
+    var v = ctx.createRadialGradient(c, c, c * 0.55, c, c, c);
+    v.addColorStop(0, 'rgba(30,8,0,0)'); v.addColorStop(1, 'rgba(30,8,0,0.55)');
+    ctx.fillStyle = v; ctx.fillRect(0, 0, s, s);
+    ctx.restore();
+  }
+  Array.prototype.slice.call(document.querySelectorAll('.scan canvas')).forEach(drawFundus);
 })();
 </script>
 </body>

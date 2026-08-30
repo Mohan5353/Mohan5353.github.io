@@ -408,23 +408,33 @@ footer{border-top:1px solid var(--line); padding-top:1.2rem; color:var(--mist); 
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  /* scroll-spy for the section nav */
+  /* scroll-spy for the section nav (position-based so short final
+     sections still activate; bottom of page pins the last link) */
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
-  var byId = {};
-  links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
-  var spy = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if (en.isIntersecting) {
-        links.forEach(function(a){ a.classList.remove('active'); });
-        var link = byId[en.target.id];
-        if (link) link.classList.add('active');
-      }
-    });
-  }, {rootMargin: '-35% 0px -60% 0px'});
-  links.forEach(function(a){
-    var sec = document.getElementById(a.getAttribute('href').slice(1));
-    if (sec) spy.observe(sec);
-  });
+  var sections = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+  function setActive(link){
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if (link) link.classList.add('active');
+  }
+  function spy(){
+    var doc = document.documentElement;
+    var atBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 2;
+    var current = null;
+    if (atBottom) {
+      current = sections[sections.length - 1];
+    } else {
+      var line = window.scrollY + window.innerHeight * 0.35;
+      sections.forEach(function(s){
+        if (s.getBoundingClientRect().top + window.scrollY <= line) current = s;
+      });
+    }
+    setActive(current ? links[sections.indexOf(current)] : null);
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  window.addEventListener('resize', spy, {passive:true});
+  spy();
 
   /* reveal sections as they enter the viewport (progressive enhancement) */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
